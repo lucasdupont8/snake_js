@@ -1,0 +1,39 @@
+
+h1 {
+    margin: 10px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+body {
+    background-color: rgb(53, 53, 53);
+}
+
+.jeu {
+    /*width: 80vw;
+    height: 30vh;*/
+    border: 2px solid black;
+    display: flex;
+    margin: 0;
+}
+
+.ligne {
+    display: flex;
+    height: 5vh;
+    justify-content: center;
+}
+
+.case {
+    border: 2px solid black;
+    width: 5vh;
+    display: flex;
+    /*justify-content: center;*/
+    background-color: green;
+}
+
+.container {
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    height: 100vh; /* S'assurer que le conteneur prend toute la hauteur de la page */
+}
