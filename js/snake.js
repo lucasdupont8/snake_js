@@ -53,7 +53,7 @@ function initGame(){
     variables.vitesse_snake = 100;
     variables.colonne = getRandomInt(nb_colonne);//spawn aleatoire
     variables.ligne = getRandomInt(nb_ligne);
-    variables.index =  variables.ligne * nb_ligne + variables.colonne;
+    variables.index =  variables.ligne * nb_colonne + variables.colonne;
     affSnake(variables.snake,variables.taille_snake,variables.index);
     spawnPomme();
     return variables;
@@ -89,7 +89,7 @@ function moveSnake() {
             vars.colonne = 0;
         }
     }
-    vars.index = vars.ligne * nb_ligne + vars.colonne;
+    vars.index = vars.ligne * nb_colonne + vars.colonne;
     console.log(vars.ligne,vars.colonne);
 
     if (tab[vars.index].style.backgroundColor == snakeColor){
