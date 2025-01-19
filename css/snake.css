@@ -10,8 +10,6 @@ body {
 }
 
 .jeu {
-    /*width: 80vw;
-    height: 30vh;*/
     border: 2px solid black;
     display: flex;
     margin: 0;

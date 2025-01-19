@@ -1,12 +1,12 @@
 
-let taille_ligne = 10
-let taille_colonne = 10
+let nb_ligne = 15
+let nb_colonne = 20
 let div=document.getElementById("jeu");
-for (let i = 0; i < taille_ligne; i++){
+for (let i = 0; i < nb_ligne; i++){
     let ligne=document.createElement("div");
     ligne.className="ligne";
     div.appendChild(ligne);
-    for (let i = 0; i < taille_colonne; i++){
+    for (let i = 0; i < nb_colonne; i++){
         let colonne=document.createElement("div");
         colonne.className="case";
         ligne.appendChild(colonne);
@@ -43,29 +43,22 @@ let pommeColor = "red"
 
 let vars = initGame();
 function initGame(){
-    for (let i = 0; i < taille_colonne * taille_ligne; i++){
+    for (let i = 0; i < nb_colonne * nb_ligne; i++){
         tab[i].style.backgroundColor = backgroundColor;
     }
     
-    let varables = {};
-    varables.snake = [];
-    varables.taille_snake = 5;
-    varables.vitesse_snake = 500;
-    varables.colonne = getRandomInt(taille_colonne);//spawn aleatoire
-    varables.ligne = getRandomInt(taille_ligne);
-    varables.index =  varables.colonne * taille_colonne + varables.ligne;
-    affSnake(varables.snake,varables.taille_snake,varables.index);
+    let variables = {};
+    variables.snake = [];
+    variables.taille_snake = 5;
+    variables.vitesse_snake = 100;
+    variables.colonne = getRandomInt(nb_colonne);//spawn aleatoire
+    variables.ligne = getRandomInt(nb_ligne);
+    variables.index =  variables.ligne * nb_ligne + variables.colonne;
+    affSnake(variables.snake,variables.taille_snake,variables.index);
     spawnPomme();
-    return varables;
+    return variables;
 }
-/*
-let snake = vars.snake;
-let taille_snake = vars.taille_snake;
-let vitesse_snake = vars.vitesse_snake;
-let colonne = vars.colonne;
-let ligne = vars.ligne;
-let index = vars.index;
-*/
+
 setInterval(moveSnake, vars.vitesse_snake);
 
 function moveSnake() {
@@ -73,30 +66,31 @@ function moveSnake() {
         return;
     }
     if(dir == "haut"){
-        vars.colonne -= 1;
-        if (vars.colonne < 0){
-            vars.colonne = taille_colonne - 1;
+        vars.ligne -= 1;
+        if (vars.ligne < 0){
+            vars.ligne = nb_ligne - 1;
         }
     }
     else if(dir == "bas"){
-        vars.colonne += 1;
-        if (vars.colonne >= taille_colonne){
-            vars.colonne = 0;
-        }
-    }
-    else if(dir == "gauche"){
-        vars.ligne -= 1;
-        if(vars.ligne < 0){
-            vars.ligne = taille_ligne - 1;
-        }
-    }
-    else if(dir == "droite"){
         vars.ligne += 1;
-        if(vars.ligne >= taille_ligne){
+        if (vars.ligne >= nb_ligne){
             vars.ligne = 0;
         }
     }
-    vars.index = vars.colonne * taille_colonne + vars.ligne;
+    else if(dir == "gauche"){
+        vars.colonne -= 1;
+        if(vars.colonne < 0){
+            vars.colonne = nb_colonne - 1;
+        }
+    }
+    else if(dir == "droite"){
+        vars.colonne += 1;
+        if(vars.colonne >= nb_colonne){
+            vars.colonne = 0;
+        }
+    }
+    vars.index = vars.ligne * nb_ligne + vars.colonne;
+    console.log(vars.ligne,vars.colonne);
 
     if (tab[vars.index].style.backgroundColor == snakeColor){
         alert("Game Over");
@@ -124,7 +118,7 @@ function affSnake(snake,taille_snake,index){
 }
 
 function spawnPomme(){
-    let co = getRandomInt(taille_colonne * taille_ligne);
+    let co = getRandomInt(nb_colonne * nb_ligne);
     if (tab[co].style.backgroundColor == snakeColor){
         spawnPomme();
         return;
