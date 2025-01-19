@@ -14,25 +14,25 @@ for (let i = 0; i < nb_ligne; i++){
 }
 
 let tab=document.getElementsByClassName("case");
-let gameStar = false;
+let gameStart = false;
 let dir;
 
 document.addEventListener("keydown",(e)=>{
     if(e.key == "ArrowUp" || e.key == "z" && dir != "bas"){
         dir = "haut";
-        gameStar = true;
+        gameStart = true;
     }
     else if(e.key == "ArrowDown" || e.key == "s" && dir != "haut"){
         dir = "bas";
-        gameStar = true;
+        gameStart = true;
     }
     else if(e.key == "ArrowLeft" || e.key == "q" && dir != "droite"){
         dir = "gauche";
-        gameStar = true;
+        gameStart = true;
     }
     else if(e.key == "ArrowRight" || e.key == "d" && dir != "gauche"){
         dir = "droite";
-        gameStar = true;
+        gameStart = true;
     }
     //console.log(e.key);
 });
@@ -62,7 +62,7 @@ function initGame(){
 setInterval(moveSnake, vars.vitesse_snake);
 
 function moveSnake() {
-    if (!gameStar){
+    if (!gameStart){
         return;
     }
     if(dir == "haut"){
@@ -95,7 +95,7 @@ function moveSnake() {
     if (tab[vars.index].style.backgroundColor == snakeColor){
         alert("Game Over");
         vars = initGame();
-        gameStar = false;
+        gameStart = false;
         return;
     }
     else if(tab[vars.index].style.backgroundColor == pommeColor){
@@ -135,4 +135,16 @@ function sleep(millis){
     var curDate = null;
     do { curDate = new Date(); }
     while(curDate-date < millis);
+}
+
+function botton_parametre(){
+    let div = document.getElementById("jeu");
+    if (div.style.display == "none"){
+        div.style.display = "block";
+        vars = initGame();
+        gameStart = false;
+    }
+    else{
+        div.style.display = "none";
+    }
 }
